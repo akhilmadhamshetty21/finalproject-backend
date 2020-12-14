@@ -26,5 +26,10 @@ router.post("/",auth,async(req,res)=>{
         res.status(500).json({error:err.message});
     }
 });
+router.get("/getexpense",auth,async(req,res)=>{
+    const expenses=await expense.find({userId: req.user, month:req.query.month , year:req.query.year});
+    res.json(expenses);
+});
+
 
 module.exports=router;
